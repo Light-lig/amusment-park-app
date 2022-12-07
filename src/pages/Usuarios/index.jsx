@@ -16,9 +16,9 @@ const Usuarios = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const [query,setQuery] = useState('');
     useEffect(()=>{
-        axios.get('http://localhost:5000/api/v1/usr')
+        axios.get('http://localhost:8000/api/usuarios')
         .then(response=>{
-            setData(response.data.filter(el=>el.id !== user.id));
+            setData(response.data.data.filter(el=>el.id !== user.id));
         })
     },[update])
     const close = (event, reason) => {

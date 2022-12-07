@@ -11,7 +11,7 @@ const CustomSwitch = ({item,setMensaje,setError,setOpen})=>{
         checked={value}
         onChange={()=>{
             item.activo = value?0:1
-            axios.put(`http://localhost:5000/api/v1/usr/${item.id}`,item)
+            axios.patch(`http://localhost:8000/api/usuarios/${item.id}`,item)
             .then(response=>{
                 if(response.error){
                     setMensaje('Ocurrio un error');

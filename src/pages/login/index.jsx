@@ -40,7 +40,7 @@ const Login = () => {
       setShow(true);
       return;
     }
-    axios.post('http://localhost:5000/api/v1/usr/login',user)
+    axios.post('http://localhost:8000/api/usuario/login',user)
     .then((res)=>{
       console.log(res);
       if(res.data.login){

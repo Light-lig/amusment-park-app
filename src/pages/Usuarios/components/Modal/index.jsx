@@ -164,7 +164,7 @@ export default function CustomizedDialogs({setMensaje,
       }
       values.modifiedPassword = modifiedPassword;
       if(!values.id){
-        axios.post('http://localhost:5000/api/v1/usr',values)
+        axios.post('http://localhost:8000/api/usuarios',values)
         .then(response=>{
           if(!response.error){
             setMensaje('Se ejecuto correctamente.');
@@ -182,7 +182,9 @@ export default function CustomizedDialogs({setMensaje,
          
         })
       }else{
-        axios.put(`http://localhost:5000/api/v1/usr/${values.id}`,values)
+        axios.patch(`http://localhost:8000/api/usuarios/${values.id}`,
+        values
+        )
         .then(response=>{
           if(!response.error){
             setMensaje('Se ejecuto correctamente.');

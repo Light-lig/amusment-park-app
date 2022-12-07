@@ -33,22 +33,22 @@ const Graficos = () =>{
     };
    
     useEffect(()=>{
-        axios.get(`http://localhost:5000/api/v1/estadisticas/estadisticas/${usuario.id}/${fechaDesde.format('DD-MM-YYYY')}/${fechaHasta.format('DD-MM-YYYY')}`)
+        axios.get(`http://localhost:8000/api/estadisticas/obtener?id_user=${usuario.id}&fechaDesde=${fechaDesde.format('DD-MM-YYYY')}&fechaHasta=${fechaHasta.format('DD-MM-YYYY')}`)
         .then(response=>{
             setData([]);
 
             setTimeout(()=>{
-                setData(response.data);
-                setFakeData(response.data);
+                setData(response.data.data);
+                setFakeData(response.data.data);
             },100)
          
         })
       
     },[fechaDesde,fechaHasta]);
     useEffect(()=>{
-        axios.get('http://localhost:5000/api/v1/park')
+        axios.get('http://localhost:8000/api/parques/obtener')
         .then(res=>{
-            setParks(res.data);
+            setParks(res.data.data);
         })
     },[])
     return(
@@ -102,9 +102,9 @@ const Graficos = () =>{
      
     </Box>
     <div className="flex justify-around">
-        <BarChart data={data.map(el=> {return el.cantidad})} categories={data.map(el=>{return el.nombre})} /> 
+        <BarChart data={data.map(el=> {return Number(el.cantidad)})} categories={data.map(el=>{return el.nombre})} /> 
 
-        <PieChart data={data.map(el=> {return el.cantidad})} categories={data.map(el=>{return el.nombre})}  />
+        <PieChart data={data.map(el=> {return Number(el.cantidad)})} categories={data.map(el=>{return el.nombre})}  />
     </div>
 
 </DashBoard>

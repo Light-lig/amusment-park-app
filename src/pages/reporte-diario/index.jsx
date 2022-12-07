@@ -30,22 +30,22 @@ const ReporteDiario = () =>{
       
     };
     useEffect(()=>{
-        axios.get(`http://localhost:5000/api/v1/park/estadisticas/${usuario.id}/${fechaDesde.format('DD-MM-YYYY')}/${fechaHasta.format('DD-MM-YYYY')}`)
+        axios.get(`http://localhost:8000/api/estadisticas/obtener?id_user=${usuario.id}&fechaDesde=${fechaDesde.format('DD-MM-YYYY')}&fechaHasta=${fechaHasta.format('DD-MM-YYYY')}`)
         .then(response=>{
-            setData(response.data.map((el,index)=>{
+            setData(response.data.data.map((el,index)=>{
                 el.id = index + 1;
                 return el;
             }));
         })
     },[fechaDesde,fechaHasta,update])
     useEffect(()=>{
-        axios.get('http://localhost:5000/api/v1/park')
+        axios.get('http://localhost:8000/api/parques/obtener')
         .then(res=>{
-            setParks(res.data);
+            setParks(res.data.data);
         })
-        axios.get('http://localhost:5000/api/v1/tipoVisitante')
+        axios.get('http://localhost:8000/api/tipos-visitante')
         .then(res=>{
-            setTipos(res.data);
+            setTipos(res.data.data);
         })
     },[])
     return(

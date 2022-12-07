@@ -40,7 +40,7 @@ const IngresoCantidades = ({parques,tipos,setUpdate}) => {
       return
     }
 
-    axios.post('http://localhost:5000/api/v1/estadisticas',token)
+    axios.post('http://localhost:8000/api/estadisticas',token)
   .then(response=>{
     if(!response.data.error){
       setMensaje('Se agrego correctamente');
